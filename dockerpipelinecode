@@ -41,8 +41,8 @@ pipeline
 			{
 			    sh 'cd /var/lib/jenkins/workspace/$JOB_NAME/'
 			    sh 'cp /var/lib/jenkins/workspace/$JOB_NAME/target/XYZtechnologies-1.0.war /var/lib/jenkins/workspace/$JOB_NAME/'
-				sh 'docker build -t XYZtechnologies:$BUILD_NUMBER .'
-				sh 'docker tag XYZtechnologies:$BUILD_NUMBER skalpande/XYZtechnologies:$BUILD_NUMBER'
+				sh 'docker build -t xyztechnologies:$BUILD_NUMBER .'
+				sh 'docker tag xyztechnologies:$BUILD_NUMBER sgkalpande/xyztechnologies:$BUILD_NUMBER'
 			}
 		}
 
@@ -52,7 +52,7 @@ pipeline
 			{   
 			    withDockerRegistry([ credentialsId: "dockerhub", url: "" ])
 			    {
-			       sh 'docker push skalpande/XYZtechnologies:$BUILD_NUMBER'
+			       sh 'docker push sgkalpande/xyztechnologies:$BUILD_NUMBER'
 			    }
 			}
 		}
@@ -61,7 +61,7 @@ pipeline
 		{
 			steps
 			{
-				sh 'docker run -itd -P skalpande/XYZtechnologies:$BUILD_NUMBER'
+				sh 'docker run -itd -P sgkalpande/xyztechnologies:$BUILD_NUMBER'
 			}
 		}   
 	}
