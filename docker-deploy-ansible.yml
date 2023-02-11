@@ -1,0 +1,8 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+    - name: Build Docker Image
+      command: docker build -t xyztechnologies . 
+    - name: deploy docker container
+      command: docker run -itd -P xyztechnologies
